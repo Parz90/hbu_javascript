@@ -13,8 +13,7 @@
 
 <!-- The body is splitted in header, navigation, main(main has sections and  an aside) and footer -->
 
-<body>
-<!--
+<body onload="guess">
     <h1>HelloWorld Heading 1</h1>
     <h2>Ratespiel</h2>
 	<form name="Form" action="">
@@ -26,18 +25,6 @@
         <input type="text" name="Guess1" id="guess1">
         <p id="ausgabe"></p>
 	</form>
--->
- 	<form name="Valid" action="">
-		<label>Name: </label>
-		<input type="text" name="name">
-        <br>
-        <label>Vorname: </label>
-        <input type="text" name="vorname">
-        <br>
-		<button type="button" onclick="validate(document.Valid.name.value, document.Valid.vorname.value)">Senden</button>
-        <br>
-	</form>
-    
 </body>
 
 </html>
