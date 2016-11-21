@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Navigator Object</title>
+        <script type="text/javascript">
+            
+            function myName()
+            {
+                var x = "Name info: " + navigator.appName;
+                document.getElementById("Name").innerHTML = x;
+            }
+            
+            function myVersion()
+            {
+                var x = "Version info: " + navigator.appVersion;
+                document.getElementById("version").innerHTML = x;
+            }
+            
+            function myPlatform()
+            {
+                var x = "Platform info: " + navigator.platform;
+                document.getElementById("Platfrom").innerHTML = x;
+            }
+            
+            function myUserAgent()
+            {
+                var x = "UserAgent info: " + navigator.userAgent;
+                document.getElementById("UserAgent").innerHTML = x;
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Sortieren</h1>
+        
+        <div>
+            <p id="Name">Click the button to return the name of your browser.</p>
+            <button onclick="myName();">Name</button>
+        </div>
+        
+        <div>
+            <p id="version">Click the button to return the version of your browser.</p>
+            <button onclick="myVersion();">Version</button>
+        </div>
+        
+        <div>
+            <p id="Platfrom">Click the button to return the platform of your browser.</p>
+            <button onclick="myPlatform();">Platform</button>
+        </div>
+        
+        <div>
+            <p id="UserAgent">Click the button to return the user agent of your browser.</p>
+            <button onclick="myUserAgent();">UserAgent</button>
+        </div>
+
+        
+    </body>
+</html>

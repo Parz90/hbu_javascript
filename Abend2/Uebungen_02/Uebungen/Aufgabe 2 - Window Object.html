@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Window Object</title>
+        <script type="text/javascript">
+            window.setInterval(getTime, 1000);
+			
+            function getTime()
+            {
+                var now = new Date();
+				console.log("Aktuelle Sekunde: " + now.getSeconds());
+				if(now.getSeconds() === 0){
+					alert(now);
+				}
+            }                       
+
+        </script>
+    </head>
+    <body>
+        <h1>Window Object</h1>
+        <p>Der output befindet sich in der Konsole</p>
+        
+    </body>
+</html>

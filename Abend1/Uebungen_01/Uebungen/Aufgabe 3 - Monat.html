@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var monat = "";
+		var date = new Date();
+		switch (date.getMonth()) {
+		case 0:
+			monat = "Januar";
+			break;
+		case 1:
+			monat = "Februar";
+			break;
+		case 2:
+			monat = "März";
+			break;
+		case 3:
+			monat = "April";
+			break;
+		case 4:
+			monat = "Mai";
+			break;
+		case 5:
+			monat = "Juni";
+			break;
+		case 6:
+			monat = "Juli";
+			break;
+		case 7:
+			monat = "August";
+			break;
+		case 8:
+			monat = "September";
+			break;
+		case 9:
+			monat = "Oktober";
+			break;
+		case 10:
+			monat = "November";
+			break;
+		case 11:
+			monat = "Dezember";
+			break;
+		default:
+			monat = "unbekannt";
+		}
+		alert(monat);
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>EventHandler</title>
+        <script type="text/javascript">		
+            function evaluateQuestion(value)
+            {
+                switch(parseInt(value)){
+					case 1:
+						askQuestion("Wie alt sind Sie?");
+						break;
+					case 2:
+						askQuestion("Wo wohnen Sie?");
+						break;
+					case 3:
+						askQuestion("In welchem Semester befinden Sie sich?");
+						break;
+					case 4:
+						askQuestion("Wo sind Sie aufgewachsen?");
+						break;
+					default:
+						alert("Ungültiger Input, bitte nur Zahlen 1-4 eingeben!");
+				}
+            }   
+
+			function askQuestion(question){
+				var result = prompt(question);
+				if(result){//in case of cancel this will be false
+					alert(result);
+				} else {
+					alert("Eingabe abgebrochen!");
+				}
+			}
+
+        </script>
+    </head>
+    <body>
+        <h1>EventHandler</h1>
+        <p>Eine Zahl wischen 1-4 eingeben und abhängig davon kommt eine andere Frage</p>
+        <input type="text" onkeyup="evaluateQuestion(value)" />
+    </body>
+</html>

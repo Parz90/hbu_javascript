@@ -1,19 +1,18 @@
-function guess() {
-    var Zufallszahl;
-    Zufallszahl = Math.round(Math.random() * 100);
-    guess1.innerHTML = Zufallszahl;
-}
 
-function calculate(Zahl) {
-    var ausgabe = document.getElementById('ausgabe');
-    var guess1 = document.getElementById('guess1');
-    if(guess1 === Zahl) {
-        ausgabe.innerHTML = "Richtig!!!";
+
+function load() {
+    var zufallszahl = Math.round(Math.random() * 100);
+    var count = 0;
+}
+function calculate() {
+    var input = document.getElementById('input');
+    var output = document.getElementById('output');
+    var inputValue = parseInt(input.value);
+    if (inputValue < zufallszahl) {
+        output.innerHTML = "Wert ist kleiner";
+    } else if (inputValue > zufallszahl) {
+        output.innerHTML = "Wert ist grösser";
+    } else {
+        output.innerHTML = "Richtig!!!";
     }
-    else if(guess1 < Zahl) {
-        ausgabe.innerHTML = "Wert ist kleiner"    
-    } 
-    else if(guess1 > Zahl) {
-        ausgabe.innerHTML = "Wert ist grösser";
-    }
-}    
+}

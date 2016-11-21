@@ -1,0 +1,38 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Formular Validieren</title>
+<script type="text/javascript">
+ 
+function validiereFormular() {
+    var nameElement = document.getElementById("name");
+    var vornameElement = document.getElementById("vorname");
+
+    return validiereElement(nameElement, "Name muss ausgefuellt werden.")
+        && validiereElement(vornameElement, "Vorname muss ausgefuellt werden.");
+  }
+
+  function validiereElement(element, text) {
+    if (element.value == "") {
+      alert(text);
+      return false;
+    }
+    return true;
+  }
+</script>
+</head>
+<body>
+	<h1>Formular Validierung</h1>
+	<form onsubmit="return validiereFormular();">
+		<p>
+			Name: <input type="text" value="" id="name" />
+			<br />
+			Vorname: <input type="text" id="vorname" value="" />
+			<br />
+			<input type="submit" />
+		</p>
+	</form>
+</body>
+</html>

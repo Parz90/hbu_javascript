@@ -14,30 +14,15 @@
 <!-- The body is splitted in header, navigation, main(main has sections and  an aside) and footer -->
 
 <body>
-<!--
-    <h1>HelloWorld Heading 1</h1>
-    <h2>Ratespiel</h2>
-	<form name="Form" action="">
-		<label for="Eingabe">Eingabe: </label>
-		<input type="text" name="Eingabe">
-        <br>
-		<button type="button" onclick="calculate(document.Form.Eingabe.value)">raten</button>
-        <br>
-        <input type="text" name="Guess1" id="guess1">
-        <p id="ausgabe"></p>
-	</form>
--->
- 	<form name="Valid" action="">
-		<label>Name: </label>
-		<input type="text" name="name">
-        <br>
-        <label>Vorname: </label>
-        <input type="text" name="vorname">
-        <br>
-		<button type="button" onclick="validate(document.Valid.name.value, document.Valid.vorname.value)">Senden</button>
-        <br>
-	</form>
-    
+	<form>
+		<p>
+			Eingabe: <input type="text" value="" id="eingabe" />
+			<br />
+			Ausgabe: <input type="text" id="ausgabe" value="" />
+			<br />
+			<input type="button" onclick="sortieren();" value="Sortieren"/>
+		</p>
+	</form> 
 </body>
 
 </html>

@@ -13,17 +13,14 @@
 
 <!-- The body is splitted in header, navigation, main(main has sections and  an aside) and footer -->
 
-<body onload="guess">
-    <h1>HelloWorld Heading 1</h1>
-    <h2>Ratespiel</h2>
+<body onload="load();">
+    <h1>Ratespiel</h1>
 	<form name="Form" action="">
-		<label for="Eingabe">Eingabe: </label>
-		<input type="text" name="Eingabe">
+		<input type="text" id="input">
         <br>
-		<button type="button" onclick="calculate(document.Form.Eingabe.value)">raten</button>
+		<button type="button" onclick="calculate();">raten</button>
         <br>
-        <input type="text" name="Guess1" id="guess1">
-        <p id="ausgabe"></p>
+        <p id="output"></p>
 	</form>
 </body>
 

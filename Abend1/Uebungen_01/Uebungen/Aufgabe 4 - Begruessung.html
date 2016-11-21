@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>JavaScript</title>
+</head>
+<body >
+	<script type="text/javascript">
+	var date = new Date();
+	var stunde = date.getHours();
+	var text = "";
+	if(stunde >= 0 && stunde < 6){
+		text = "Gute Nacht!";
+	}else if(stunde >= 6 && stunde < 10){
+		text = "Guten Morgen!";
+	}else if(stunde >= 10 && stunde < 17){
+		text = "Guten Tag!";
+	}else {
+		text = "Guten Abend!";
+	}
+	alert(text);
+	</script>
+</body>
+</html>

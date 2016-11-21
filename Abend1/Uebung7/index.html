@@ -16,12 +16,12 @@
 <body>
  	<form name="Valid" action="">
 		<label>Name: </label>
-		<input type="text" name="name">
+		<input type="text" name="name" id="name">
         <br>
         <label>Vorname: </label>
-        <input type="text" name="vorname">
+        <input type="text" name="vorname" id="vorname">
         <br>
-		<button type="button" onclick="validate(document.Valid.name.value, document.Valid.vorname.value)">Senden</button>
+		<button type="button" onclick="validate()">Senden</button>
         <br>
 	</form> 
 </body>

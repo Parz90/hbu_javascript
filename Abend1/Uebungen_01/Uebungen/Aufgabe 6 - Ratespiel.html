@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Ratespiel</title>
+        <script type="text/javascript">
+            var gesuchteZahl = Math.floor(Math.random() * 100);
+            var zaehler = 0;
+
+            function raten() {
+                var eingabeFeld = document.getElementById("eingabe");
+                var ausgabeFeld = document.getElementById("ausgabe");
+                var eingabeZahl = parseInt(eingabeFeld.value);
+                zaehler = zaehler + 1;
+                if (eingabeZahl < gesuchteZahl) {
+                    ausgabeFeld.value = "Die eingegebene Zahl ist zu klein.";
+                } else if (eingabeZahl > gesuchteZahl) {
+                    ausgabeFeld.value = "Die eingegebene Zahl ist zu gross.";
+                } else {
+                    ausgabeFeld.value = "Richtig getippt. Anzahl Versuche: " + zaehler;
+                }
+
+
+
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Ratespiel</h1>
+        <p>
+            Eingabe:
+            <input type="text" value="" id="eingabe" />
+            <br /> Ausgabe:
+            <textarea id="ausgabe" cols="50" rows="3">Gesucht ist eine Zahl zwischen 1 und 100.</textarea>
+            </br>
+            <input type="button" value="Check" onclick="raten();" />
+        </p>
+
+
+
+    </body>
+
+    </html>
