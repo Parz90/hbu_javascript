@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JavaScript</title>
+<script type="text/javascript">
+	var value = 1.0;
+	var token = 1;
+
+	var setNewOpacity = function() {
+		if (value >= 0.00 || value <= 1.0) {
+			value = value - 0.05 * token;
+			var ueber = document.getElementById("ueber");
+			ueber.style.opacity = value;
+			setTimeout(setNewOpacity, 100);
+		}
+	}
+	
+	function setFadeIn(value){
+		if(value){
+			token = 1;
+			value = 1;
+		}else{
+			token = -1;
+			value = 0;
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>JavaScript</h1>
+	<p id="bla">
+		<input type="button" value="FadeIn" onclick="setFadeIn(true);setNewOpacity();" /> 
+		<input type="button" value="FadeOut" onclick="setFadeIn(false);setNewOpacity();" /> 
+	</p>
+
+	<div style="position: absolute;">
+		<div style="position: absolute; top: 10px; left: 10px;">
+			<img src="sky.jpg" />
+		</div>
+
+		<div id="ueber"
+			style="position: absolute; top: 10px; left: 10px; width: 500px; height: 375px; background: black; opacity: 1.0;"></div>
+	</div>
+</body>
+</html>

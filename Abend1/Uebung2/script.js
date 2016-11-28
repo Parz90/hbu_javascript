@@ -6,5 +6,4 @@ function sum() {
         }
     }
     alert(summe);
-
 }

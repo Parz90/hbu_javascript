@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JavaScript</title>
+<style type="text/css">
+table {
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
+}
+td{
+	border-style: solid;
+	border-width: 1px;
+}
+</style>
+<script type="text/javascript">
+	var zaehler = 0;
+	function addTabellenZeile() {
+		var tabelle = document.getElementById("tabelle");
+		var tr = document.createElement("tr");
+		tr.appendChild(createTD(zaehler));
+		var input = document.getElementById("einText");
+		tr.appendChild(createTD(input.value));
+		tabelle.appendChild(tr);
+		zaehler++;
+	}
+	
+	function createTD(text){
+		var td = document.createElement("td");
+		td.appendChild(document.createTextNode(text));
+		return td;
+	}
+</script>
+</head>
+<body>
+	<h1>JavaScript</h1>
+	<p>
+		<input type="button" value="FadeIn" onclick="addTabellenZeile();" />
+		<input type="text" id="einText" />
+	</p>
+
+	<table id="tabelle">
+		<tr>
+			<td>Id</td>
+			<td>Text</td>
+		</tr>
+	</table>
+</body>
+</html>

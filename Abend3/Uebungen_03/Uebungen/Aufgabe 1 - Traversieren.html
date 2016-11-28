@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>JavaScript</title>
+        <style type="text/css">
+            table {
+                border-color: black;
+                border-width: 1px;
+                border-style: solid;
+            }
+
+            td {
+                border-style: solid;
+                border-width: 1px;
+            }
+        </style>
+        <script type="text/javascript">
+            var anzahlP = 0;
+            var anzahlH1 = 0;
+            var anzahlH2 = 0;
+            var anzahlSPAN = 0;
+
+            function traverse() {
+                function rec(parent) {
+                    if (parent.hasChildNodes()) {
+                        for (var i = 0; i < parent.childNodes.length; i++) {
+                            var child = parent.childNodes[i];
+                            rec(child);
+                        }
+                    }
+                    if (parent.tagName == "P") {
+                        anzahlP++;
+                    } else if (parent.tagName == "H1") {
+                        anzahlH1++;
+                    } else if (parent.tagName == "H2") {
+                        anzahlH2++;
+                    } else if (parent.tagName == "SPAN") {
+                        anzahlSPAN++;
+                    }
+                }
+
+                rec(document.body);
+                document.getElementById("anzahlP").innerHTML = anzahlP;
+                document.getElementById("anzahlH1").innerHTML = anzahlH1;
+                document.getElementById("anzahlH2").innerHTML = anzahlH2;
+                document.getElementById("anzahlSPAN").innerHTML = anzahlSPAN;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>JavaScript</h1>
+
+        <p id="bla">
+            <input type="button" value="Start" onclick="traverse();" /> <span><span><span><span></span></span></span></span>
+        </p>
+        <p></p>
+        <p></p>
+        <h2>h21</h2>
+        <h2>h22</h2>
+        <table>
+            <tr>
+                <td>p</td>
+                <td id="anzahlP"></td>
+            </tr>
+            <tr>
+                <td>h1</td>
+                <td id="anzahlH1"></td>
+            </tr>
+            <tr>
+                <td>h2</td>
+                <td id="anzahlH2"></td>
+            </tr>
+            <tr>
+                <td>span</td>
+                <td id="anzahlSPAN"></td>
+            </tr>
+        </table>
+    </body>
+</html>
