@@ -25,18 +25,21 @@
         songs.forEach(function (song) {
             htmlString += "<li><h3>";
             htmlString += song.rating;
-            /*
-            TODO add a button "+" with a rateSongPlus called in the inline click handler and a corresponding "-" button
-            */
+            htmlString += "(<button onclick='rateSong(";
+            htmlString += song.id;
+            htmlString += ", 1)'>+</button>";
+            htmlString += "<button onclick='rateSong(";
+            htmlString += song.id;
+            htmlString += ", -1)'>-</button>) ";
             htmlString += song.title;
-            htmlString += "</h3><p>"
+            htmlString += "</h3><p>";
             htmlString += song.artist;
             htmlString += "</p></li>";
         });
         return htmlString;
     }
     function compareSongs(s1, s2) {
-        return s1.rating < s2.rating;
+        return s2.rating - s1.rating;
     }
     function findSong(id) {
         for (var i = 0; i < songs.length; i++) {
@@ -46,29 +49,13 @@
         }
         return {};
     }
-    function rateSongPlus (songId) {
-        /*
-        TODO
-        - use findSong to find the song
-        - increase song rating
-        - call renderSongs
-         */
+    function rateSong (songId, delta) {
         var song = findSong(songId);
-        console.log("plus "+ song.id + "("+song.rating+")");
-        song.rating += 1;
-        renderSongs();
-    }
-    function rateSongMinus (songId) {
-        var song = findSong(songId);
-        console.log("minus "+ song.id + "("+song.rating+")");
-        song.rating -= 1;
+        song.rating += delta;
         renderSongs();
     }
     function renderSongs () {
-        /*
-        TODO sort the songs array (use the Array.prototype sort function and the compareSongs function)
-         */
-        document.getElementById("songs").innerHTML=createSongsHtml(songs);
+        document.getElementById("songs").innerHTML=createSongsHtml(songs.sort(compareSongs));
     }
 
     window.onload = renderSongs;

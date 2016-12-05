@@ -25,9 +25,12 @@
         songs.forEach(function (song) {
             htmlString += "<li><h3>";
             htmlString += song.rating;
-            /*
-            TODO add + and - button each with an attribute data-songId containing the songId
-            */
+            htmlString += "(<button data-delta='1' data-songId='";
+            htmlString += song.id;
+            htmlString += "'>+</button>";
+            htmlString += "<button data-delta='-1' data-songId='";
+            htmlString += song.id;
+            htmlString += "'>-</button>) "
             htmlString += song.title;
             htmlString += "</h3><p>"
             htmlString += song.artist;

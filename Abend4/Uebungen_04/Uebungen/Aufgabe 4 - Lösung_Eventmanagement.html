@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>jQuery Event Manager</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>
+        <style>
+            table, th, td
+            {
+                border: 1px solid black;
+            }
+        </style>
+        <script type="text/javascript">
+            var counter = 1;
+            $(document).ready(function() {
+
+                $("#addEvent").click(function() {
+                    addEvent();
+                });
+                $("#deleteEvent").click(function() {
+                    deleteEvent();
+                });
+                $("#nextEvent").click(function() {
+                    showNextEvent();
+                });
+            });
+
+            function addEvent() {
+
+                $("#tabelle").append("<tr><td>" + counter + "</td><td>" + $('#date').val() + "</td><td>" + $('#event').val() + "</td></tr>");
+                counter++;
+            }
+
+            function deleteEvent() {
+
+                $("#tabelle tr").each(function() {
+
+                    var eventNr = $('#eventNr').val();
+                    var id = $(this).find("td:first").text();
+
+                    if (id === eventNr) {
+                        $(this).remove();
+                    }
+                });
+            }
+
+            function showNextEvent() {
+
+                var now = new Date();
+                var currentYear = parseInt(now.getFullYear());
+                var currentMonth = parseInt((now.getMonth() + 1));
+                var currentDay = parseInt(now.getDate());
+
+                $("#tabelle tr").each(function() {
+
+                    var eventDate = $(this).find("td:eq(1)").text();
+
+                    //split date into year, month and day
+                    var subStringEventDate = eventDate.split('.');
+                    var eventDay = parseInt(subStringEventDate[0]);
+                    var eventMonth = parseInt(subStringEventDate[1]);
+                    var eventYear = parseInt(subStringEventDate[2]);
+
+                    if (currentYear > eventYear) {
+                        $(this).hide();
+                    }
+                    else if ((currentYear === eventYear) && (currentMonth > eventMonth)) {
+                        $(this).hide();
+                    }
+                    else if ((currentYear === eventYear) && (currentMonth === eventMonth) && (currentDay > eventDay)) {
+                        $(this).hide();
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h1>jQuery Events</h1>
+
+        <div>
+            <h2>Events hinzufügen</h2>
+            Datum: <input type="text" id="date" />
+            <br/>
+            Event: <input type="text" id="event" />
+            <br/>
+            <input type="button" value="Add event" id="addEvent">
+            <br/>
+        </div>
+        <div>
+            <h2>Events löschen</h2>
+            Event-Nr.: <input type="text" id="eventNr" />
+            <br/>
+            <input type="button" value="Delete event" id="deleteEvent">
+            <br/>
+        </div>
+        <div>
+            <h2>Zukunftige Events anzeigen</h2>
+            <input type="button" value="Next event" id="nextEvent">
+            <br/>
+        </div>
+        <div>       
+            <h2>Aktuelle Events</h2>
+            <table border="2" id="tabelle">
+                <tr>
+                    <th>Event-Nr.</th>
+                    <th>Datum</th>
+                    <th>Event</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
