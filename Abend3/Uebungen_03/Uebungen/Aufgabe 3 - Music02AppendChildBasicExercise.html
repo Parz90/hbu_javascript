@@ -20,8 +20,13 @@
     function appendSongsLiElements (songs) {
         songs.forEach(function (song) {
             var liElement = document.createElement("li");
-            // TODO create and add h3 with title and p with artist info
-            document.getElementById("songs").appendChild(liElement); // better at the end
+            var h3Element = document.createElement("h3");
+            var pElement = document.createElement("p");
+            h3Element.textContent = song.title;
+            pElement.textContent = song.artist;
+            liElement.appendChild(h3Element);
+            liElement.appendChild(pElement);
+            document.getElementById("songs").appendChild(liElement);
         });
     }
     window.onload = function(){
