@@ -27,9 +27,11 @@
             });
             
             function add1 () {
-                $("#resultat").append("<tr><td>" + counter++ + "</td>");
-                $("#resultat").append("<td>" + $('#date').val() + "</td>");
-                $("#resultat").append("<td>" + $('#event').val() + "</td></tr>");
+                $("#resultat").append(
+                        $("tr")
+                            .append($("<td>").text(counter++))
+                            .append($("<td>").text($('#date').val()))
+                            .append($"<td>").text($('#event').val())));
                 //$("#resultat").append("<tr><td>" + counter + "</td><td>" + $('#date').val() + "</td><td>" + $('#event').val() + "</td></tr>");
                 counter++;
             };
