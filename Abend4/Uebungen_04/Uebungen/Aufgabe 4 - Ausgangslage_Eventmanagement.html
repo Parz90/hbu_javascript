@@ -1,100 +1,134 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>jQuery Event Manager</title>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-        </script>
-        <style>
-            table, th, td
-            {
-                border: 1px solid black;
-            }
-        </style>
-        <script type="text/javascript">
-            var counter = 1;
-            $(document).ready(function() {
 
-                $("#add1").click(function() {
-                    add1();
-                });
-                $("#delete1").click(function() {
-                    delete1();
-                });
-                $("#update1").click(function() {
-                    update1();
-                });
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>jQuery Event Manager</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    </script>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+    <script type="text/javascript">
+        var counter = 1;
+        $(document).ready(function () {
+
+            $("#add1").click(function () {
+                add1();
             });
-            
-            function add1 () {
-                $("#resultat").append(
-                        $("tr")
-                            .append($("<td>").text(counter++))
-                            .append($("<td>").text($('#date').val()))
-                            .append($"<td>").text($('#event').val())));
-                //$("#resultat").append("<tr><td>" + counter + "</td><td>" + $('#date').val() + "</td><td>" + $('#event').val() + "</td></tr>");
-                counter++;
-            };
-            
-            function delete1 () {
-                $("#loeschen").find("loeschen");
-                $("#resultat").append("<td>" + $('#date').val() + "</td>");
-                $("#resultat").append("<td>" + $('#event').val() + "</td></tr>");
-                //$("#resultat").append("<tr><td>" + counter + "</td><td>" + $('#date').val() + "</td><td>" + $('#event').val() + "</td></tr>");
-                counter++;
-            };
+            $("#delete1").click(function () {
+                delete1();
+            });
+            $("#update1").click(function () {
+                update1();
+            });
+        });
 
-        </script>
-    </head>
-    <body>
-        <h1>jQuery Events</h1>
+        function add1() {
+            $("#resultat").append(
+                $("<tr>")
+                .append($("<td>").text(counter++))
+                .append($("<td>").text($('#date').val()))
+                .append($("<td>").text($('#event').val())));
+        };
 
-        <div>
-            <h2>Events hinzufügen</h2>
-            <table border="3" id="hinzufügen">
-                <tr>
-                    <td>Datum:</td>
-                    <td><input type="text" id="date"></td>
-                </tr>
-                <tr>
-                    <td>Event:</td>
-                    <td><input type="type" id="event"></td>
-                </tr>
-                <tr>
-                    <td><input id="add1" type="button" value="Add event"></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <table border="3" id="tableLoeschen">
-                <tr>
-                    <td>Events loeschen:</td>
-                    <td><input type="text" id="eventLoeschen"></td>
-                </tr>
-                <tr>
-                    <td><input id="delete1" type="button" value="Delete event"></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div>
-           <table border="3" id="update">
-                <tr>
-                    <td>Zukünftige Events anzeigen:</td>
-                    <td><input id="update1" type="button" value="Update event"></td>
-                </tr>
-            </table>
-        </div>
-        <div>       
-            <h2>Aktuelle Events</h2>
-            <table border="2" id="resultat">
-                <tr>
-                    <th>Event-Nr.</th>
-                    <th>Datum</th>
-                    <th>Event</th>
-                </tr>
-            </table>
-        </div>
-    </body>
+        function delete1() {
+            $("tr").each(function () {
+                if (($("<tr>").find("td:first").text()) === ($("#eventNr").val())) {
+                    $(this).remove();
+                }
+            })
+        };
+
+        function update1() {
+            var now = new Date();
+            var currentYear = parseInt(now.getFullYear());
+            var currentMonth = parseInt((now.getMonth() + 1));
+            var currentDay = parseInt(now.getDate());
+            var currentDate = currentDay + "." + currentMonth + "." + currentYear;
+            var temp = false;
+
+
+            $("#resultat tr").each(function () {
+                $("td").each(function () {
+                    if (($(this).text()) === (currentDate)) {
+                        temp = true
+                    }
+                })
+                if (temp) {
+                    $(this).hide();
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>jQuery Events</h1>
+
+    <div>
+        <h2>Events hinzufügen</h2>
+        <table border="3" id="hinzufügen">
+            <tr>
+                <td>Datum:</td>
+                <td>
+                    <input type="text" id="date">
+                </td>
+            </tr>
+            <tr>
+                <td>Event:</td>
+                <td>
+                    <input type="type" id="event">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="add1" type="button" value="Add event">
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="3" id="tableLoeschen">
+            <tr>
+                <td>Events loeschen:</td>
+                <td>
+                    <input type="text" id="eventLoeschen">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="delete1" type="button" value="Delete event">
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="3" id="update">
+            <tr>
+                <td>Zukünftige Events anzeigen:</td>
+                <td>
+                    <input id="update1" type="button" value="Update event">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2>Aktuelle Events</h2>
+        <table border="2" id="resultat">
+            <tr>
+                <th>Event-Nr.</th>
+                <th>Datum</th>
+                <th>Event</th>
+            </tr>
+        </table>
+    </div>
+</body>
+
 </html>
