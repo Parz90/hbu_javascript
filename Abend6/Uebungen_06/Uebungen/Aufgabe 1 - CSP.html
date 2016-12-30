@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Aufgabe 1 CSP</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' http://momentjs.com; img-src http://www.hbu.ch">
+
+    <script src="http://momentjs.com/downloads/moment.min.js" type="text/javascript"></script>
+    <script src="http://chancejs.com/chance.min.js" type="text/javascript" ></script>
+    <script src="Aufgabe 1 - CSP.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('text').innerHTML = 'Samichlaus';
+            datumAnzeigen();
+            nameAnzeige();
+        }        
+    </script>
+</head>
+<body>
+	<img src="http://www.hbu.ch/resources/logo_hbu_neu1.png" />
+
+    <div id="datum"></div>
+    <div id="name"></div>
+    <div id="text"></div>
+
+    <img src="http://www.winterthur-neuwiesen.ch/wp-content/uploads/2016/09/samichlaus.jpg" />
+</body>
+</html>
