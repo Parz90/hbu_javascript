@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title></title>
+<style>
+html, body, #map-canvas {
+margin: 10;
+padding: 20;
+height: 500px;
+width: 500px;
+}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+function initialize() {
+var myLatlng = new google.maps.LatLng(37.4419, -122.1419);
+
+var mapOptions = {
+zoom: 4,
+center: myLatlng,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+
+var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+var marker = new google.maps.Marker({
+position: myLatlng,
+map: map,
+title: 'My Place!'
+});
+}    
+</script>
+</head>
+<body onload="initialize();">
+<div id="map-canvas"></div>
+</body>
+</html>

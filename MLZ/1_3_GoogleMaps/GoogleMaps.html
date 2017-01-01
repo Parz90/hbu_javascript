@@ -5,13 +5,13 @@
 <!-- Version: v5.0 -->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>GoogleMaps</title>
+        <title>GoogleMaps</title>  
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <script type="text/javascript" src="GoogleMaps.js">
-        </script>   
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+        </script> 
     </head>
-    <body>   
+    <body onload="googleMap();">   
         <h1>GoogleMaps</h1>
-        <div id="map" style="width:100%;height:500px"></div>
+        <div id="map" style="height:500px;width:900px"></div>
     </body>
 </html>
