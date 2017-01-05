@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>jQuery Forms Validation</title>
+	
+	<link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+	<!-- HTML form for validation demo -->
+	<form action="" method="post" id="register-form" novalidate="novalidate">
+		<h2>User Registration</h2>
+
+		<div id="form-content">
+			<fieldset>
+
+				<div class="fieldgroup">
+					<label for="firstname">First Name</label>
+					<input type="text" name="firstname" required/>
+				</div>
+
+				<div class="fieldgroup">
+					<label for="lastname">Last Name</label>
+					<input type="text" name="lastname"/>
+				</div>
+
+				<div class="fieldgroup">
+					<label for="email">Email</label>
+					<input type="text" name="email"/>
+				</div>
+
+				<div class="fieldgroup">
+					<label for="password">Password</label>
+					<input type="password" name="password"/>
+				</div>
+
+				<div class="fieldgroup">
+					<p class="right">By clicking register you agree to our <a target="_blank" href="/policy">policy</a>.</p>
+					<input type="submit" value="Register" class="submit"/>
+				</div>
+
+			</fieldset>
+		</div>
+	</form>
+  
+	//hosted by Microsoft Ajax CDN
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="formsValidation.js"></script>
+  </body>
+</html>

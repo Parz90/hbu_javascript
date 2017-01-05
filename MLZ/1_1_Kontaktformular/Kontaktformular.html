@@ -6,44 +6,93 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Kontaktformular</title>
-    <script type="text/javascript" src="Kontaktformular.js"></script>
 </head>
 
 <body>
     <h1>Kontaktformular</h1>
-    <form action="action_page.php">
+    <form class="ctform" id="contactForm" onsubmit="successInfo();">
         <fieldset>
             <legend>Ihre Kontaktangaben:</legend>
             <br>
             <label>Name:</label>
             <br>
-            <input type="text" name="name" value="Name">
+            <input type="text" id="name" name="name">
             <br>
             <br>
             <label>E-Mail:</label>
             <br>
-            <input type="text" name="email" value="E-Mail">
+            <input type="text" id="email" name="email">
             <br>
             <br>
             <label>Telefonnummer:</label>
             <br>
-            <input type="text" name="tel" value="Telefonnummer">
-            <br> 
+            <input type="text" id="tel" name="tel">
+            <br>
             <br>
             <label>Betreff:</label>
             <br>
-            <input type="text" name="betreff" value="Betreff">
+            <input type="text" id="betreff" name="betreff">
             <br>
             <br>
             <label>Nachricht:</label>
             <br>
-            <input type="text" name="nachricht" value="Nachricht">
+            <textarea type="text" id="nachricht" name="nachricht"></textarea>
             <br>
             <br>
-            <input type="submit" value="Abschicken">
+            <input class="button" type="submit" value="Abschicken">
         </fieldset>
     </form>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        function successInfo() {
+            var fname = document.getElementById("name").value;
+            var femail = document.getElementById("email").value;
+            var jsonOB = {
+                "name": fname,
+                "email": femail
+            };
+            if ($("#contactForm").valid) {
+                alert(jsonOB.name);
+                return $("#contactForm").valid;
+            }
+            return false;
+        }
+
+
+        $("#contactForm").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                betreff: {
+                    required: true,
+                },
+                nachricht: {
+                    required: true,
+                    maxlength: 1000
+                }
+            },
+            messages: {
+                name: "Bitte Ihre Name angeben...",
+                email: {
+                    required: "Bitte Ihre E-Mail Adresse angeben...",
+                    email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
+                },
+                betreff: "Bitte Betreff angeben...",
+                nachricht: {
+                    required: "Bitte Ihre Nachricht hinterlassen...",
+                    maxlength: "Maximale Länge Ihres Nachrichtes erreicht."
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

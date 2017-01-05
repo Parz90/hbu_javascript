@@ -1,0 +1,22 @@
+<head>
+    <title>jQuery Beispiel</title>
+    <script src="jquery-1.11.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#test")
+                    .css({"color": "#FFFFFF", "height": "25px"})
+                    .html("Neu");
+        });
+    </script>
+
+    <style type="text/css">
+        div#test {
+            width:100px;
+            height:100px;
+            background:#FF0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">Ein Beispiel</div>
+</body>

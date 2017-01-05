@@ -3,15 +3,89 @@
 <!-- Implemented by: Parthipan Nagulanandan -->
 <!-- Date: 02. January 2017 -->
 <!-- Version: v5.0 -->
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>GoogleMaps</title>  
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-        <script type="text/javascript" src="GoogleMaps.js">
-        </script> 
-    </head>
-    <body onload="googleMap();">   
-        <h1>GoogleMaps</h1>
-        <div id="map" style="height:500px;width:900px"></div>
-    </body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>GoogleMaps</title>
+</head>
+
+<body onload="getLocation();">
+    <div align=center>
+        <h2>1.3 Google Maps</h2>
+        <div id="map" style="width:1200px; height:600px"></div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript">
+        var map = null;
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function geoSuccess(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var latlng = new google.maps.LatLng(lat, lng);
+            var mapCanvas = document.getElementById('map');
+            var myOptions = {
+                zoom: 10,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false
+            };
+            map = new google.maps.Map(mapCanvas, myOptions);
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: "location : My Location"
+            });
+            locations(places);
+        }
+
+        function geoError() {
+            alert("Geocoder failed. Possible Reasons: - Browser doesn't support Geocode, - Location not found, - You have not allowed the browser to locate the current location, - other reasons");
+        }
+
+        var places = [
+            {
+                "address": "Dorfstrasse 10, 8630 Rüti"
+            },
+            {
+                "address": "Gerenweg 7, 8498 Gibswil"
+            },
+            {
+                "address": "Hauptplatz 5, 8645 Rapperswil"
+            }];
+
+        function locations(placeArray) {
+            var latitude = null;
+            var longitude = null;
+            for (i = 0; i < placeArray.length; i++) {
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({
+                    'address': placeArray[i].address
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        latitude = results[0].geometry.location.lat();
+                        longitude = results[0].geometry.location.lng();
+                        var placeslatlng = new google.maps.LatLng(latitude, longitude);
+                        var markPos = new google.maps.Marker({
+                            position: placeslatlng,
+                            map: map,
+                            title: "Adresse",
+                            icon: new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/green-dot.png")
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
 </html>

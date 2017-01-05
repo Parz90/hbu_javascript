@@ -6,34 +6,75 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Feedbackformular</title>
-    <script type="text/javascript" src="Feedbackformular.js"></script>
 </head>
 
 <body>
     <h1>Feedbackformular</h1>
-    <form action="action_page.php">
+    <form class="fbform" id="feedbackForm" onsubmit="successInfo();">
         <fieldset>
             <legend>Ihr Feedback:</legend>
             <br>
             <label>Name:</label>
             <br>
-            <input type="text" name="name" value="Name">
+            <input type="text" name="name">
             <br>
             <br>
             <label>E-Mail:</label>
             <br>
-            <input type="text" name="email" value="E-Mail">
+            <input type="text" name="email">
             <br>
             <br>
             <label>Feedback:</label>
             <br>
-            <input type="text" name="nachricht" value="Nachricht">
+            <textarea type="text" name="nachricht"></textarea>
             <br>
             <br>
-            <input type="submit" value="Abschicken">
+            <input class="button" type="submit" value="Abschicken">
         </fieldset>
     </form>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        function successInfo() {
+            var fname = document.getElementById("name").value;
+            var femail = document.getElementById("email").value;
+            var jsonOB = {
+                "name": fname,
+                "email": femail
+            };
+            if ($("#feedbackForm").valid) {
+                alert(jsonOB.name);
+                return $("#feedbackForm").valid;
+            }
+            return false;
+        }
+
+
+        $("#feedbackForm").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                feedback: {
+                    required: true,
+                }
+            },
+            messages: {
+                name: "Bitte Ihre Name angeben...",
+                email: {
+                    required: "Bitte Ihre E-Mail Adresse angeben...",
+                    email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
+                },
+                feedback: "Bitte Betreff angeben..."
+            }
+        });
+    </script>
 </body>
 
 </html>

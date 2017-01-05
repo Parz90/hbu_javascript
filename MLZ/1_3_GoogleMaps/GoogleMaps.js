@@ -3,62 +3,70 @@ Implemented by: Parthipan Nagulanandan
 Date: 02. January 2017
 Version: v5.0
 */
+var map = null;
 
-/*
-var location1 = https: //maps.googleapis.com/maps/api/geocode/json?
-    address = 1600 + Amphitheatre + Parkway,
-    +Mountain + View, +CA & key = AIzaSyA0ZkIjgtggbIkGyLGCzSpNuIbd8t1x7BE;
-*/
-
-function createMarker(latlng) {
-
-    // If the user makes another search you must clear the marker variable
-    if (marker != undefined && marker != '') {
-        marker.setMap(null);
-        marker = '';
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
     }
-
-    marker = new google.maps.Marker({
-        map: map,
-        position: latlng
-    });
-
 }
 
-function googleMap() {
+function geoSuccess(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    var latlng = new google.maps.LatLng(lat, lng);
     var mapCanvas = document.getElementById('map');
-    var myPos = new google.maps.LatLng(47.349, 8.7065);
-    var mapOptions = {
-        center: myPos,
-        zoom: 10
+    var myOptions = {
+        zoom: 10,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false
     };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-
+    map = new google.maps.Map(mapCanvas, myOptions);
     var marker = new google.maps.Marker({
-        position: myPos,
+        position: latlng,
         map: map,
-        title: 'HBU Uster, Berufsschulstrasse 1, 8610 Uster'
-    })
-    };
-    
-    
-    
-    
-    var addressInput = "Dorfstrasse 10, 8630 Rüti, Switzerland";
-    var geocoder = new google.maps.Geocoder();
+        title: "location : My Location"
+    });
+    locations(places);
+}
 
-    geocoder.geocode({
-            address: addressInput
+function geoError() {
+    alert("Geocoder failed. Possible Reasons: - Browser doesn't support Geocode, - Location not found, - You have not allowed the browser to locate the current location, - other reasons");
+}
+
+var places = [
+    {
+        "address": "Dorfstrasse 10, 8630 Rüti"
+            },
+    {
+        "address": "Gerenweg 7, 8498 Gibswil"
+            },
+    {
+        "address": "Hauptplatz 5, 8645 Rapperswil"
+            }
+];
+
+function locations(placeArray) {
+    var latitude = null;
+    var longitude = null;
+    for (i = 0; i < placeArray.length; i++) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            'address': placeArray[i].address
         }, function (results, status) {
-
             if (status == google.maps.GeocoderStatus.OK) {
-
-                var myResult = results[0].geometry.location; // reference LatLng value
-
-                createMarker(myResult); // call the function that adds the marker
-
-                map.setCenter(myResult);
-
-                map.setZoom(17);
-            };
-    })
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+                var placeslatlng = new google.maps.LatLng(latitude, longitude);
+                    var markPos = new google.maps.Marker({
+                    position: placeslatlng,
+                    map: map,
+                    title: "Adresse"
+                });      
+            }
+        });
+    }
+}
