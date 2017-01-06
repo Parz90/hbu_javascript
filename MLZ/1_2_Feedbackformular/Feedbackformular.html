@@ -12,7 +12,7 @@
 
 <body>
     <h1>Feedbackformular</h1>
-    <form class="fbform" id="feedbackForm" onsubmit="successInfo();">
+    <form class="fbform" id="feedbackForm" onsubmit="successInfo(); sendMail();">
         <fieldset>
             <legend>Ihr Feedback:</legend>
             <br>
@@ -28,7 +28,7 @@
             <br>
             <label>Feedback:</label>
             <br>
-            <textarea type="text" name="nachricht"></textarea>
+            <textarea type="text" name="feedback"></textarea>
             <br>
             <br>
             <input class="button" type="submit" value="Abschicken">
@@ -74,6 +74,21 @@
                 feedback: "Bitte Betreff angeben..."
             }
         });
+
+        function email() {
+            var email = "abc@abcmail.com";
+
+        var subject = "My Feedback";
+
+        var cc = "abc@abcmail.com";
+
+        var bcc = "abc@abcmail.com";
+
+        var body = "I am the body of the feedback that you are sending, created using JavaScript.";
+
+        window.document.href = "mailto:" + email + "?subject=" + subject + "&cc=" + cc + "&bcc=" + bcc + "&body=" + body;
+        }
+        
     </script>
 </body>
 
