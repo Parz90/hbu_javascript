@@ -1,0 +1,16 @@
+        var places = [
+            {
+                "address": "Dorfstrasse 10, 8630 Rüti"
+            },
+            {
+                "address": "Gerenweg 7, 8498 Gibswil"
+            },
+            {
+                "address": "Bahnhofstrasse 104, 8001 Zürich"
+            },
+            {
+                "address": "Spitalstrasse 12, 8620 Wetzikon"
+            },
+            {
+                "address": "Hauptplatz 5, 8645 Rapperswil"
+            }];

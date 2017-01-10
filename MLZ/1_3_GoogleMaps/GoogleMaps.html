@@ -17,6 +17,7 @@
     </div>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="GoogleMaps.json"></script>
     <script type="text/javascript">
         var map = null;
 
@@ -52,17 +53,6 @@
             alert("Geocoder failed. Possible Reasons: - Browser doesn't support Geocode, - Location not found, - You have not allowed the browser to locate the current location, - other reasons");
         }
 
-        var places = [
-            {
-                "address": "Dorfstrasse 10, 8630 Rüti"
-            },
-            {
-                "address": "Gerenweg 7, 8498 Gibswil"
-            },
-            {
-                "address": "Hauptplatz 5, 8645 Rapperswil"
-            }];
-
         function locations(placeArray) {
             var latitude = null;
             var longitude = null;
@@ -78,7 +68,7 @@
                         var markPos = new google.maps.Marker({
                             position: placeslatlng,
                             map: map,
-                            title: "Adresse",
+                            title: results[0].formatted_address,
                             icon: new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/icons/green-dot.png")
                         });
                     }

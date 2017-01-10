@@ -10,9 +10,9 @@
     <title>Kontaktformular</title>
 </head>
 
-<body>
+<body onload=" download();">
     <h1>Kontaktformular</h1>
-    <form class="ctform" id="contactForm" onsubmit="successInfo();">
+    <form class="ctform" id="contactForm" onsubmit="successInfo(); download();">
         <fieldset>
             <legend>Ihre Kontaktangaben:</legend>
             <br>
@@ -44,6 +44,7 @@
             <input class="button" type="submit" value="Abschicken">
         </fieldset>
     </form>
+    <div id="dl"></div>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script type="text/javascript">
@@ -92,6 +93,35 @@
                 }
             }
         });
+
+        function download() {
+            var obj = {
+                a: 123,
+                b: "4 5 6"
+            };
+            var data = "Output/GoogleMaps;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+
+            var a = document.createElement('a');
+            a.href = 'data:' + data;
+            a.download = 'data.json';
+            a.innerHTML = 'download JSON';
+
+            var dl = document.getElementById('dl');
+            dl.appendChild(a);
+        }
+
+        //$('input, textarea').change(checkForm('#name'));
+        //$(document).ready(function(){$("input").change(function(){alert("The text has been changed.");});});
+        $(document).ready(listener());
+        
+        function listener() {
+            $("input").change(checkForm('#name'));
+        }
+
+        function checkForm(id) {
+            $("input[type=submit]")
+                .prop("disabled", !($(id).valid()));
+        }
     </script>
 </body>
 
