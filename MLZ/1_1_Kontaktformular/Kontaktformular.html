@@ -50,7 +50,7 @@
     <script type="text/javascript">
         var jsonOB;
         $.validator.setDefaults({
-            submitHandler: function () {
+            submitHandler: function() {
                 var filledName = document.getElementById("name").value;
                 var filledEmail = document.getElementById("email").value;
                 var filledTel = document.getElementById("tel").value;
@@ -103,7 +103,13 @@
                     }
                 }
             });
+            //$(".button").hover(checkValidity());
         }
+
+        /*function checkValidity() {
+            $("input[type=submit]").prop("disabled", !($("#contactForm").valid()));
+        }
+        */
 
         function download() {
             var data = "Output/Kontaktformular;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonOB));
@@ -117,13 +123,12 @@
             var dl = document.getElementById('dl');
             dl.appendChild(a);
         }
-        /*
-                function removeLink() {
-                    var divLink = document.getElementById('dl');
-                    var lkDownload = document.getElementById('linkDownload');
-                    divLink.removeChild(divLink.children);
-                }
-                */
+
+        function removeLink() {
+            var divLink = document.getElementById('dl');
+            var lkDownload = document.getElementById('linkDownload');
+            divLink.removeChild(divLink.children);
+        }
     </script>
 </body>
 
