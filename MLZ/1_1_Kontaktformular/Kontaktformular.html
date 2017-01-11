@@ -10,9 +10,9 @@
     <title>Kontaktformular</title>
 </head>
 
-<body onload=" download();">
+<body>
     <h1>Kontaktformular</h1>
-    <form class="ctform" id="contactForm" onsubmit="successInfo(); download();">
+    <form class="ctform" id="contactForm">
         <fieldset>
             <legend>Ihre Kontaktangaben:</legend>
             <br>
@@ -48,80 +48,82 @@
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script type="text/javascript">
-        function successInfo() {
-            var fname = document.getElementById("name").value;
-            var femail = document.getElementById("email").value;
-            var jsonOB = {
-                "name": fname,
-                "email": femail
-            };
-            if ($("#contactForm").valid) {
-                alert(jsonOB.name);
-                return $("#contactForm").valid;
-            }
-            return false;
-        }
-
-
-        $("#contactForm").validate({
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                betreff: {
-                    required: true,
-                },
-                nachricht: {
-                    required: true,
-                    maxlength: 1000
-                }
-            },
-            messages: {
-                name: "Bitte Ihre Name angeben...",
-                email: {
-                    required: "Bitte Ihre E-Mail Adresse angeben...",
-                    email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
-                },
-                betreff: "Bitte Betreff angeben...",
-                nachricht: {
-                    required: "Bitte Ihre Nachricht hinterlassen...",
-                    maxlength: "Maximale Länge Ihres Nachrichtes erreicht."
-                }
+        var jsonOB;
+        $.validator.setDefaults({
+            submitHandler: function () {
+                var filledName = document.getElementById("name").value;
+                var filledEmail = document.getElementById("email").value;
+                var filledTel = document.getElementById("tel").value;
+                var filledSubject = document.getElementById("betreff").value;
+                var filledMessage = document.getElementById("nachricht").value;
+                jsonOB = {
+                    "name": filledName,
+                    "email": filledEmail,
+                    "tel": filledTel,
+                    "subject": filledSubject,
+                    "message": filledMessage
+                };
+                download();
+                alert("Ihr ausgefülltes Kontaktformular: " + "\n\nName: " + jsonOB.name + "\nE-Mail: " + jsonOB.email + "\nTelefonnummer: " + jsonOB.tel + "\nBetreff: " + jsonOB.subject + "\nNachricht: " + jsonOB.message);
+                $link = $('a:first');
+                $link[0].click();
+                removeLink();
             }
         });
+        $(document).ready(validateFunction());
+
+        function validateFunction() {
+            $("#contactForm").validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    betreff: {
+                        required: true,
+                    },
+                    nachricht: {
+                        required: true,
+                        maxlength: 1000
+                    }
+                },
+                messages: {
+                    name: "Bitte Ihre Name angeben...",
+                    email: {
+                        required: "Bitte Ihre E-Mail Adresse angeben...",
+                        email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
+                    },
+                    betreff: "Bitte Betreff angeben...",
+                    nachricht: {
+                        required: "Bitte Ihre Nachricht hinterlassen...",
+                        maxlength: "Maximale Länge Ihres Nachrichtes erreicht."
+                    }
+                }
+            });
+        }
 
         function download() {
-            var obj = {
-                a: 123,
-                b: "4 5 6"
-            };
-            var data = "Output/GoogleMaps;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+            var data = "Output/Kontaktformular;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonOB));
 
             var a = document.createElement('a');
             a.href = 'data:' + data;
             a.download = 'data.json';
             a.innerHTML = 'download JSON';
-
+            //a.attributes('id', 'linkDownload');
+            $("a").attr("id", "linkDownload");
             var dl = document.getElementById('dl');
             dl.appendChild(a);
         }
-
-        //$('input, textarea').change(checkForm('#name'));
-        //$(document).ready(function(){$("input").change(function(){alert("The text has been changed.");});});
-        $(document).ready(listener());
-        
-        function listener() {
-            $("input").change(checkForm('#name'));
-        }
-
-        function checkForm(id) {
-            $("input[type=submit]")
-                .prop("disabled", !($(id).valid()));
-        }
+        /*
+                function removeLink() {
+                    var divLink = document.getElementById('dl');
+                    var lkDownload = document.getElementById('linkDownload');
+                    divLink.removeChild(divLink.children);
+                }
+                */
     </script>
 </body>
 
