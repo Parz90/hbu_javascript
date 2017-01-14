@@ -70,7 +70,7 @@
                 removeLink();
             }
         });
-        $(document).ready(validateFunction());
+        $(document).ready($(".button").hover(checkValidity()));
 
         function validateFunction() {
             $("#contactForm").validate({
@@ -103,13 +103,13 @@
                     }
                 }
             });
-            //$(".button").hover(checkValidity());
         }
 
-        /*function checkValidity() {
+        function checkValidity() {
+            validateFunction();
             $("input[type=submit]").prop("disabled", !($("#contactForm").valid()));
         }
-        */
+        
 
         function download() {
             var data = "Output/Kontaktformular;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonOB));
