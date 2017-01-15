@@ -86,6 +86,18 @@
                     this.defaultShowErrors();
                 }
             });
+            // Disable/Enable Submit Button 
+            // Function disabled because not working properly!!!
+            /*
+            $('input').on('keyup blur', function () {
+                if ($('#contactForm').valid()) {
+                    $('.button').prop('disabled', false); // Enable Button
+                }
+                else {
+                    $('.button').prop('disabled', 'disabled'); // Disable Button
+                }
+            });
+            */
         });
 
         function sendEmail() {

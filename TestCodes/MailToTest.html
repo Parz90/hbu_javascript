@@ -6,7 +6,6 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- <link rel="stylesheet" href="/styles.css" /> -->
     <title>Feedbackformular</title>
 </head>
 
@@ -46,45 +45,55 @@
                 filledEmail = document.getElementById("email").value;
                 filledFeedback = document.getElementById("feedback").value;
                 jsonOB = {
-                    "name": filledName,
-                    "email": filledEmail,
-                    "feedback": filledFeedback
+                    "name": filledName
+                    , "email": filledEmail
+                    , "feedback": filledFeedback
                 };
-                emailTest();
+                sendEmail();
             }
         });
-
         $(document).ready(function () {
+        /*
             $("#feedbackForm").validate({
-                onclick: false,
-                onkeyup: false,
-                rules: {
+                onfocusout: false
+                , onkeyup: true
+                , onclick: true
+                , focusInvalid: true
+                , rules: {
                     name: {
                         required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    feedback: {
-                        required: true,
                     }
-                },
-                messages: {
-                    name: "Bitte Ihre Name angeben...",
-                    email: {
-                        required: "Bitte Ihre E-Mail Adresse angeben...",
-                        email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
-                    },
-                    feedback: "Bitte Betreff angeben..."
-                },
-                errorPlacement: function (error, element) {
+                    , email: {
+                        required: true
+                        , email: true
+                    }
+                    , feedback: {
+                        required: true
+                    , }
+                }
+                , messages: {
+                    name: "Bitte Ihre Name angeben..."
+                    , email: {
+                        required: "Bitte Ihre E-Mail Adresse angeben..."
+                        , email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
+                    }
+                    , feedback: "Bitte Betreff angeben..."
+                }
+                , errorPlacement: function (error, element) {
                     alert(error.text());
                 }
+                , showErrors: function (errorMap, errorList) {
+                    this.defaultShowErrors();
+                }
             });
+            */
+        $("#name").validate({
+            required: true,
+            message: "Please specify your name"
+        });
         });
 
-        function emailTest() {
+        function sendEmail() {
             var body_message = filledFeedback;
             var email = filledEmail;
             var subject = "Feedback von: " + filledName;

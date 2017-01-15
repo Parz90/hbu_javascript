@@ -41,79 +41,89 @@
             <textarea type="text" id="nachricht" name="nachricht"></textarea>
             <br>
             <br>
-            <input class="button" type="submit" value="Abschicken">
-        </fieldset>
+            <input class="button" type="submit" value="Abschicken"> </fieldset>
     </form>
     <div id="dl"></div>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script type="text/javascript">
         var jsonOB;
+        // Summit Handler if the form is valid
         $.validator.setDefaults({
-            submitHandler: function() {
+            submitHandler: function () {
                 var filledName = document.getElementById("name").value;
                 var filledEmail = document.getElementById("email").value;
                 var filledTel = document.getElementById("tel").value;
                 var filledSubject = document.getElementById("betreff").value;
                 var filledMessage = document.getElementById("nachricht").value;
+                // JSON Object for later download
                 jsonOB = {
-                    "name": filledName,
-                    "email": filledEmail,
-                    "tel": filledTel,
-                    "subject": filledSubject,
-                    "message": filledMessage
+                    "name": filledName
+                    , "email": filledEmail
+                    , "tel": filledTel
+                    , "subject": filledSubject
+                    , "message": filledMessage
                 };
                 download();
+                // Alert with filled form informations
                 alert("Ihr ausgefülltes Kontaktformular: " + "\n\nName: " + jsonOB.name + "\nE-Mail: " + jsonOB.email + "\nTelefonnummer: " + jsonOB.tel + "\nBetreff: " + jsonOB.subject + "\nNachricht: " + jsonOB.message);
                 $link = $('a:first');
                 $link[0].click();
                 removeLink();
             }
         });
-        $(document).ready($(".button").hover(checkValidity()));
-
-        function validateFunction() {
+        
+        // Start validation as soon as document is ready
+        $(document).ready(function () {
             $("#contactForm").validate({
+                // Specific Validation Rules 
                 rules: {
                     name: {
                         required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    betreff: {
-                        required: true,
-                    },
-                    nachricht: {
-                        required: true,
-                        maxlength: 1000
                     }
-                },
-                messages: {
-                    name: "Bitte Ihre Name angeben...",
-                    email: {
-                        required: "Bitte Ihre E-Mail Adresse angeben...",
-                        email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
-                    },
-                    betreff: "Bitte Betreff angeben...",
-                    nachricht: {
-                        required: "Bitte Ihre Nachricht hinterlassen...",
-                        maxlength: "Maximale Länge Ihres Nachrichtes erreicht."
+                    , email: {
+                        required: true
+                        , email: true
+                    }
+                    , betreff: {
+                        required: true
+                    , }
+                    , nachricht: {
+                        required: true
+                        , maxlength: 1000
+                    }
+                }
+                // Specific Validation Error messages
+                , messages: {
+                    name: "Bitte Ihre Name angeben..."
+                    , email: {
+                        required: "Bitte Ihre E-Mail Adresse angeben..."
+                        , email: "Die Angabe ist keine gültige E-Mail Adresse. Geben Sie eine gültiges E-Mail Adresse an."
+                    }
+                    , betreff: "Bitte Betreff angeben..."
+                    , nachricht: {
+                        required: "Bitte Ihre Nachricht hinterlassen..."
+                        , maxlength: "Maximale Länge Ihres Nachrichtes erreicht."
                     }
                 }
             });
-        }
+            // Disable/Enable Submit Button 
+            // Function disabled because not working properly!!!
+            /*
+            $('input').on('keyup blur', function () {
+                if ($('#contactForm').valid()) {
+                    $('.button').prop('disabled', false); // Enable Button
+                }
+                else {
+                    $('.button').prop('disabled', 'disabled'); // Disable Button
+                }
+            });
+            */
+        });
 
-        function checkValidity() {
-            validateFunction();
-            $("input[type=submit]").prop("disabled", !($("#contactForm").valid()));
-        }
-        
-
+        // JSON file download function 
         function download() {
             var data = "Output/Kontaktformular;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonOB));
-
             var a = document.createElement('a');
             a.href = 'data:' + data;
             a.download = 'data.json';
@@ -124,6 +134,7 @@
             dl.appendChild(a);
         }
 
+        // Remove Link Tag as soon as download commando is pushed
         function removeLink() {
             var divLink = document.getElementById('dl');
             var lkDownload = document.getElementById('linkDownload');
